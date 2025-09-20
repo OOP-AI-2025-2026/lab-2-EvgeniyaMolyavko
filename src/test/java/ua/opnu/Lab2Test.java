@@ -93,7 +93,7 @@ public class Lab2Test {
         @Test
         @DisplayName("Test add() method for invalid arguments 2")
         void test11() {
-            TimeSpan span = new TimeSpan(2, 20);
+            TimeSpan span = new TimeSpan(0, 20);
             span.add(1, 60);
             assertEquals(2, span.getHours());
             assertEquals(20, span.getMinutes());

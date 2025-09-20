@@ -6,8 +6,16 @@ public class BankAccount {
     double transactionFee;
 
     void deposit(double amount) {
-        // TODO: modify method body
-        balance = balance + amount;
+        if(amount>0){
+            balance = balance + amount;
+        }
+    }
+
+    double transactionFee(){
+        transactionFee = 0.0;
+        this.transactionFee = transactionFee;
+
+        return transactionFee;
     }
 
     double getBalance() {
@@ -15,13 +23,30 @@ public class BankAccount {
     }
 
     boolean withdraw(double amount) {
-        // TODO: modify method body
-        balance = balance - amount;
-        return true;
+
+        if(amount>0){
+            if(getBalance() >= (amount+transactionFee)){
+                balance = getBalance() - (amount + transactionFee);
+                return true;
+            } else {
+                balance = getBalance();
+                return false;
+            }
+        }
+        return false;
     }
 
     boolean transfer(BankAccount receiver, double amount) {
-        // TODO: modify method body
+        if(amount > 0){
+            if(getBalance() >= (amount+transactionFee)){
+                receiver.balance = receiver.balance + amount;
+                balance = getBalance() - (amount + transactionFee);
+                return true;
+            } else {
+                balance = getBalance();
+                return false;
+            }
+        }
         return false;
     }
 }
