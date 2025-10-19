@@ -1,8 +1,11 @@
-package ua.opnu;
+package ua.opnu.src.test.java.ua.opnu;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Nested;
+import ua.opnu.src.main.java.ua.opnu.BankAccount;
+import ua.opnu.src.main.java.ua.opnu.TimeSpan;
 
 import static org.junit.jupiter.api.Assertions.*;
 

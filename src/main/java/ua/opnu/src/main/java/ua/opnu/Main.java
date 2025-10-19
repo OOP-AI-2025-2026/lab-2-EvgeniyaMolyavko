@@ -1,4 +1,4 @@
-package ua.opnu;
+package ua.opnu.src.main.java.ua.opnu;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package ua.opnu;
+package ua.opnu.src.main.java.ua.opnu;
 
 
 public class TimeSpan {
@@ -6,7 +6,7 @@ public class TimeSpan {
     public int minutes;
 
 
-    TimeSpan(int hours, int minutes) {
+    public TimeSpan(int hours, int minutes) {
         if(hours < 0){
             this.hours = 0;
         } else {
@@ -19,39 +19,44 @@ public class TimeSpan {
         }
     }
 
-    int getHours() {
+    public int getHours() {
         return hours;
     }
 
-    int getMinutes() {
+    public int getMinutes() {
         return minutes;
     }
 
     public void add(int hours, int minutes) {
-        if(hours > 0) {
-            this.hours += hours;
-        }
-        if(minutes > 0) {
-            this.minutes += minutes;
-        }
-        if(this.minutes >= 60) {
-            int hoursAdded = this.minutes / 60;
-            this.hours += hoursAdded;
-            this.minutes = (this.minutes - (hoursAdded * 60));
+        if (hours < 0) {
+            this.hours = getHours();
+        } else if(minutes < 0){
+            this.minutes = getMinutes();
+        } else if (minutes >= 60) {
+            int hoursAdded = minutes / 60;
+            this.hours = hours + hoursAdded + getHours();
+            this.minutes = (minutes - (hoursAdded * 60)) + getMinutes();
+        } else if ((minutes + getMinutes()) >= 60) {
+            int hoursAdded = (minutes + getMinutes()) / 60;
+            this.hours = hours + hoursAdded + getHours();
+            this.minutes = (minutes - (hoursAdded * 60)) + getMinutes();
+        } else {
+            this.hours = hours + getHours();
+            this.minutes = minutes + getMinutes();
         }
 
     }
 
-    void addTimeSpan(TimeSpan timespan) {
+    public void addTimeSpan(TimeSpan timespan) {
         add(timespan.getHours(), timespan.getMinutes());
     }
 
-    double getTotalHours() {
+    public double getTotalHours() {
         double minutesDoub = ((double)(getHours()*60) + getMinutes())/60;
         return minutesDoub;
     }
 
-    int getTotalMinutes() {
+    public int getTotalMinutes() {
         int sumMinutes = (getHours()*60) + getMinutes();
         return sumMinutes;
     }
@@ -62,10 +67,16 @@ public class TimeSpan {
         if(timeFirst>=timeSecond){
             int result = timeFirst - timeSecond;
             hours = result/60;
-            minutes = result - (hours*60);
+            minutes = result%60;
+        } else {
+            hours = getHours();
+            minutes = getMinutes();
         }
+
+
     }
-    void scale(int factor) {
+
+    public void scale(int factor) {
         if(factor > 0){
             int minSum = factor*((getHours()*60) + getMinutes());
             hours = minSum/60;

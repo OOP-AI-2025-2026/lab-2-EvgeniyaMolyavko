@@ -1,11 +1,11 @@
-package ua.opnu;
+package ua.opnu.src.main.java.ua.opnu;
 
 public class BankAccount {
     String name;
-    double balance;
-    double transactionFee;
+    public double balance;
+    public double transactionFee;
 
-    void deposit(double amount) {
+    public void deposit(double amount) {
         if(amount>0){
             balance = balance + amount;
         }
@@ -22,7 +22,7 @@ public class BankAccount {
         return this.balance;
     }
 
-    boolean withdraw(double amount) {
+    public boolean withdraw(double amount) {
 
         if(amount>0){
             if(getBalance() >= (amount+transactionFee)){
@@ -36,7 +36,7 @@ public class BankAccount {
         return false;
     }
 
-    boolean transfer(BankAccount receiver, double amount) {
+    public boolean transfer(BankAccount receiver, double amount) {
         if(amount > 0){
             if(getBalance() >= (amount+transactionFee)){
                 receiver.balance = receiver.balance + amount;
